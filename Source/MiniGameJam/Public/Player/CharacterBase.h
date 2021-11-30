@@ -94,6 +94,18 @@ private:
 
 	bool Move = false;
 
+	UPROPERTY(EditAnyWhere)
+		float UpCharge = 25;
+
+	UPROPERTY(EditAnyWhere)
+		float DownCharge = 25;
+
+	UPROPERTY(EditAnyWhere)
+		float UpResistence = 25;
+
+	UPROPERTY(EditAnyWhere)
+		float DownResistence = 25;
+
 public:
 
 	UFUNCTION(BlueprintPure)
@@ -129,6 +141,8 @@ public:
 	UPROPERTY(EditAnyWhere)
 		int MaxCharge = 100;
 
+	bool Fire = false;
+
 	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
 		bool BossFight = false;
 
@@ -139,6 +153,8 @@ protected:
 
 	/** Fires a projectile. */
 	void OnFire();
+
+	void NotFire();
 
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);

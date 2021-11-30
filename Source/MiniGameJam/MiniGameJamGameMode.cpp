@@ -9,7 +9,7 @@ AMiniGameJamGameMode::AMiniGameJamGameMode()
 	: Super()
 {
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprint/Player/BP_CharacterBase.BP_CharacterBase_C"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/_Blueprint/Player/BP_CharacterBase.BP_CharacterBase_C"));
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
 	// use our custom HUD class

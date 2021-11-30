@@ -69,22 +69,37 @@ void ACharacterBase::BeginPlay()
 	Charge = MaxCharge;
 }
 
+void ACharacterBase::NotFire()
+{
+	Fire = false;
+}
+
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (isRun && Resistence > 0)
 	{
-		Resistence -= 50 * DeltaTime;
+		Resistence -= DownResistence * DeltaTime;
 	}
 	else if (!isRun && Resistence <= MaxResistence)
 	{
-		Resistence += 50 * DeltaTime;
+		Resistence += UpResistence * DeltaTime;
 	}
 	else if (Resistence <= 0)
 	{
 		Walk();
 	}
+
+	if (Fire && Charge > 0)
+	{
+		Charge -= DownCharge * DeltaTime;
+	}
+	else if(!Fire && Charge <= MaxCharge)
+	{
+		Charge += UpCharge * DeltaTime;
+	}
+
 }
 
 // Called to bind functionality to input
@@ -100,6 +115,7 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ACharacterBase::OnFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ACharacterBase::NotFire);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACharacterBase::MoveForward);
@@ -151,6 +167,7 @@ void ACharacterBase::OnFire()
 		FCollisionQueryParams CollisionParams;
 		FVector Start = FP_Gun->GetComponentLocation();
 		DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
+		Fire = true;
 	}
 
 
@@ -235,7 +252,7 @@ void ACharacterBase::LookUpAtRate(float Rate)
 
 void ACharacterBase::Run()
 {
-	if (!Move)
+	if (GetCharacterMovement()->Velocity.Size() != 0)
 	{
 		Movement->MaxWalkSpeed = MaxRun;
 		isRun = true;
