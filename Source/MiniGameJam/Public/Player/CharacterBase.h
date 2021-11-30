@@ -31,11 +31,11 @@ protected:
 		USkeletalMeshComponent* Mesh1P;
 
 	/** Gun mesh: 1st person view (seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh , BlueprintReadOnly)
 		USkeletalMeshComponent* FP_Gun;
 
 	/** Location on gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh , BlueprintReadOnly)
 		USceneComponent* FP_MuzzleLocation;
 
 	/** First person camera */
@@ -92,6 +92,7 @@ private:
 
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
 
+	bool Move = false;
 
 public:
 
@@ -104,6 +105,12 @@ public:
 	UFUNCTION(BlueprintPure)
 		float GetChangePercent() const;
 
+	UFUNCTION(BlueprintPure)
+		bool BossBox() const;
+
+	UFUNCTION(BlueprintPure)
+		bool RoundBox() const;
+
 	UPROPERTY(EditAnyWhere)
 		float Health;
 
@@ -111,7 +118,7 @@ public:
 		float Resistence;
 
 	UPROPERTY(EditAnyWhere)
-		float Change;
+		float Charge;
 
 	UPROPERTY(EditAnyWhere)
 		int MaxHealth = 100;
@@ -120,7 +127,14 @@ public:
 		int MaxResistence = 100;
 
 	UPROPERTY(EditAnyWhere)
-		int MaxChange = 100;
+		int MaxCharge = 100;
+
+	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
+		bool BossFight = false;
+
+	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
+		bool BeginBattle = false;
+
 protected:
 
 	/** Fires a projectile. */

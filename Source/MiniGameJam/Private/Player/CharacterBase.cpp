@@ -10,7 +10,7 @@
 #include "GameFramework/InputSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
-
+#include "Math/UnrealMathUtility.h"
 
 #define print(x) GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT(x));
 #define log(x) UE_LOG(LogTemp, Error, TEXT(x));
@@ -66,14 +66,25 @@ void ACharacterBase::BeginPlay()
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
 	Resistence = MaxResistence;
 	Health = MaxHealth;
-	Change = MaxChange;
+	Charge = MaxCharge;
 }
 
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (isRun && Resistence > 0)
+	{
+		Resistence -= 50 * DeltaTime;
+	}
+	else if (!isRun && Resistence <= MaxResistence)
+	{
+		Resistence += 50 * DeltaTime;
+	}
+	else if (Resistence <= 0)
+	{
+		Walk();
+	}
 }
 
 // Called to bind functionality to input
@@ -117,12 +128,30 @@ float ACharacterBase::GetResistencePercent() const
 
 float ACharacterBase::GetChangePercent() const
 {
-	return Change / MaxChange;
+	return Charge / MaxCharge;
+}
+
+bool ACharacterBase::BossBox() const
+{
+	return BossFight;
+}
+
+bool ACharacterBase::RoundBox() const
+{
+	return BeginBattle;
 }
 
 void ACharacterBase::OnFire()
 {
-
+	if (Charge > 0)
+	{
+		FHitResult* Hit = new FHitResult();
+		FVector start = FP_MuzzleLocation->GetComponentLocation();
+		FVector End = start + (FP_MuzzleLocation->GetForwardVector() * 700.f);
+		FCollisionQueryParams CollisionParams;
+		FVector Start = FP_Gun->GetComponentLocation();
+		DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
+	}
 
 
 	// try and fire a projectile
@@ -170,6 +199,11 @@ void ACharacterBase::MoveForward(float Value)
 	{
 		// add movement in that direction
 		AddMovementInput(GetActorForwardVector(), Value);
+		Move = true;
+	}
+	else
+	{
+		Move = false;
 	}
 }
 
@@ -179,6 +213,11 @@ void ACharacterBase::MoveRight(float Value)
 	{
 		// add movement in that direction
 		AddMovementInput(GetActorRightVector(), Value);
+		Move = true;
+	}
+	else
+	{
+		Move = false;
 	}
 }
 
@@ -196,8 +235,11 @@ void ACharacterBase::LookUpAtRate(float Rate)
 
 void ACharacterBase::Run()
 {
-	Movement->MaxWalkSpeed = MaxRun;
-	isRun = true;
+	if (!Move)
+	{
+		Movement->MaxWalkSpeed = MaxRun;
+		isRun = true;
+	}
 }
 
 void ACharacterBase::Walk()
