@@ -9,6 +9,11 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
+
+
+#define print(x) GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT(x));
+#define log(x) UE_LOG(LogTemp, Error, TEXT(x));
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -50,6 +55,8 @@ ACharacterBase::ACharacterBase()
 
 	// Default offset from the character location for projectiles to spawn
 	GunOffset = FVector(100.0f, 0.0f, 10.0f);
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -57,6 +64,9 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
+	Resistence = MaxResistence;
+	Health = MaxHealth;
+	Change = MaxChange;
 }
 
 // Called every frame
@@ -88,46 +98,78 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("TurnRate", this, &ACharacterBase::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ACharacterBase::LookUpAtRate);
+
+	//Run 
+
+	PlayerInputComponent->BindAction("Run" , IE_Pressed ,this ,&ACharacterBase::Run);
+	PlayerInputComponent->BindAction("Run", IE_Released , this, &ACharacterBase::Walk);
+}
+
+float ACharacterBase::GetHealthPercent() const
+{
+	return Health / MaxHealth;
+}
+
+float ACharacterBase::GetResistencePercent() const
+{
+	return Resistence / MaxResistence;
+}
+
+float ACharacterBase::GetChangePercent() const
+{
+	return Change / MaxChange;
 }
 
 void ACharacterBase::OnFire()
 {
+
+	FHitResult Hit(ForceInit);
+	FVector start = FP_Gun->GetComponentLocation();
+	FVector End = start + FVector(FP_MuzzleLocation->GetForwardVector * 700.f);
+	FCollisionQueryParams CollisionParams;
+	FVector Start = FP_Gun->GetComponentLocation();
+
+	DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
+
+	GetWorld()->LineTraceSingleByChannel(Hit, start, End, ECC_WorldDynamic, CollisionParams);
+
+
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
-		UWorld* const World = GetWorld();
-		if (World != nullptr)
-		{
+		//UWorld* const World = GetWorld();
+		//if (World != nullptr)
+		//{
 
-			const FRotator SpawnRotation = GetControlRotation();
-			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-			const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
+		//	const FRotator SpawnRotation = GetControlRotation();
+		//	// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
+		//	const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
 
-			//Set Spawn Collision Handling Override
-			FActorSpawnParameters ActorSpawnParams;
-			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+		//	//Set Spawn Collision Handling Override
+		//	FActorSpawnParameters ActorSpawnParams;
+		//	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
-			// spawn the projectile at the muzzle
-			World->SpawnActor<AMiniGameJamProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+		//	// spawn the projectile at the muzzle
+		//	World->SpawnActor<AMiniGameJamProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 
-		}
+		//}
 	}
 
 	// try and play the sound if specified
 	if (FireSound != nullptr)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+		//UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 
 	// try and play a firing animation if specified
 	if (FireAnimation != nullptr)
 	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
+		//// Get the animation object for the arms mesh
+		//UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+		//if (AnimInstance != nullptr)
+		//{
+		//	AnimInstance->Montage_Play(FireAnimation, 1.f);
+		//}
 	}
 }
 
@@ -161,4 +203,14 @@ void ACharacterBase::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
+void ACharacterBase::Run()
+{
+	Movement->MaxWalkSpeed = MaxRun;
+	isRun = true;
+}
 
+void ACharacterBase::Walk()
+{
+	Movement->MaxWalkSpeed = MaxWalk;
+	isRun = false;
+}

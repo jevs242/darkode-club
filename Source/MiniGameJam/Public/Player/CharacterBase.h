@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "CharacterBase.generated.h"
 
 class UInputComponent;
@@ -74,6 +75,52 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		uint8 bUsingMotionControllers : 1;
 
+
+private: 
+
+	void Run();
+
+	void Walk();
+
+	UPROPERTY(EditAnyWhere)
+	int MaxRun = 1000;
+
+	UPROPERTY(EditAnyWhere)
+	int MaxWalk = 600;
+
+	bool isRun = false;
+
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+
+
+public:
+
+	UFUNCTION(BlueprintPure)
+		float GetHealthPercent() const;
+
+	UFUNCTION(BlueprintPure)
+		float GetResistencePercent() const;
+
+	UFUNCTION(BlueprintPure)
+		float GetChangePercent() const;
+
+	UPROPERTY(EditAnyWhere)
+		float Health;
+
+	UPROPERTY(EditAnyWhere)
+		float Resistence;
+
+	UPROPERTY(EditAnyWhere)
+		float Change;
+
+	UPROPERTY(EditAnyWhere)
+		int MaxHealth = 100;
+
+	UPROPERTY(EditAnyWhere)
+		int MaxResistence = 100;
+
+	UPROPERTY(EditAnyWhere)
+		int MaxChange = 100;
 protected:
 
 	/** Fires a projectile. */
