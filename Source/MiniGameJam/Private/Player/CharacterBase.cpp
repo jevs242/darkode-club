@@ -123,15 +123,6 @@ float ACharacterBase::GetChangePercent() const
 void ACharacterBase::OnFire()
 {
 
-	FHitResult Hit(ForceInit);
-	FVector start = FP_Gun->GetComponentLocation();
-	FVector End = start + FVector(FP_MuzzleLocation->GetForwardVector * 700.f);
-	FCollisionQueryParams CollisionParams;
-	FVector Start = FP_Gun->GetComponentLocation();
-
-	DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
-
-	GetWorld()->LineTraceSingleByChannel(Hit, start, End, ECC_WorldDynamic, CollisionParams);
 
 
 	// try and fire a projectile
