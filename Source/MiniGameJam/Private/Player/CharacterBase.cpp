@@ -100,6 +100,13 @@ void ACharacterBase::Tick(float DeltaTime)
 		Charge += UpCharge * DeltaTime;
 	}
 
+	if (Charge <= 0)
+	{
+		Fire = false;
+		ChargeHot = true;
+	}
+
+
 }
 
 // Called to bind functionality to input
@@ -159,15 +166,20 @@ bool ACharacterBase::RoundBox() const
 
 void ACharacterBase::OnFire()
 {
-	if (Charge > 0)
+	if (Charge > 0 && !ChargeHot || Charge > 100 && ChargeHot)
 	{
 		FHitResult* Hit = new FHitResult();
 		FVector start = FP_MuzzleLocation->GetComponentLocation();
 		FVector End = start + (FP_MuzzleLocation->GetForwardVector() * 700.f);
 		FCollisionQueryParams CollisionParams;
 		FVector Start = FP_Gun->GetComponentLocation();
-		DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
+		//DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
 		Fire = true;
+
+		if (Charge > 100 && ChargeHot)
+		{
+			ChargeHot = false; 
+		}
 	}
 
 

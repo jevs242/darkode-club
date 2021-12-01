@@ -106,6 +106,8 @@ private:
 	UPROPERTY(EditAnyWhere)
 		float DownResistence = 25;
 
+	bool ChargeHot = false;
+
 public:
 
 	UFUNCTION(BlueprintPure)
