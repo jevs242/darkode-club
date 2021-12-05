@@ -120,6 +120,12 @@ public:
 		float GetChangePercent() const;
 
 	UFUNCTION(BlueprintPure)
+		int GetCountKill() const;
+
+	UFUNCTION(BlueprintPure)
+		int GetNowRound() const;
+
+	UFUNCTION(BlueprintPure)
 		bool BossBox() const;
 
 	UFUNCTION(BlueprintPure)
@@ -145,11 +151,21 @@ public:
 
 	bool Fire = false;
 
+	int CountKill = 0;
+
+	int NowRound = 0;
+
 	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
 		bool BossFight = false;
 
 	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
 		bool BeginBattle = false;
+
+	UFUNCTION(BlueprintCallable)
+		void vBeginBattle(bool Begin);
+
+	UFUNCTION(BlueprintCallable)
+		void vDamage(float Damage);
 
 protected:
 

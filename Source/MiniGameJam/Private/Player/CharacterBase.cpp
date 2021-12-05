@@ -10,6 +10,7 @@
 #include "GameFramework/InputSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Enemy.h"
 
 
 #define print(x) GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT(x));
@@ -106,6 +107,26 @@ void ACharacterBase::Tick(float DeltaTime)
 		ChargeHot = true;
 	}
 
+	if (Fire)
+	{
+		FHitResult* Hitresult = new FHitResult();
+		FVector start = FP_MuzzleLocation->GetComponentLocation();
+		FVector End = start + (FP_MuzzleLocation->GetForwardVector() * 1500.f);
+		FCollisionQueryParams TraceParams;
+		FVector Start = FP_Gun->GetComponentLocation();
+		//DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
+
+		if (GetWorld()->LineTraceSingleByChannel(*Hitresult, start, End, ECC_Visibility, TraceParams))
+		{
+			AEnemy* Hit = Cast<AEnemy>(Hitresult->GetActor());
+			if (Hit)
+			{
+				//print("Down");
+				Hit->Health -= 1;
+			}
+
+		}
+	}
 
 }
 
@@ -139,6 +160,16 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Run", IE_Released , this, &ACharacterBase::Walk);
 }
 
+void ACharacterBase::vBeginBattle(bool Begin)
+{
+	BeginBattle = Begin;
+}
+
+void ACharacterBase::vDamage(float Damage)
+{
+	Health -= Damage;
+}
+
 float ACharacterBase::GetHealthPercent() const
 {
 	return Health / MaxHealth;
@@ -168,14 +199,11 @@ void ACharacterBase::OnFire()
 {
 	if (Charge > 0 && !ChargeHot || Charge > 100 && ChargeHot)
 	{
-		FHitResult* Hit = new FHitResult();
-		FVector start = FP_MuzzleLocation->GetComponentLocation();
-		FVector End = start + (FP_MuzzleLocation->GetForwardVector() * 700.f);
-		FCollisionQueryParams CollisionParams;
-		FVector Start = FP_Gun->GetComponentLocation();
-		//DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
 		Fire = true;
 
+		
+		
+		
 		if (Charge > 100 && ChargeHot)
 		{
 			ChargeHot = false; 
@@ -222,6 +250,11 @@ void ACharacterBase::OnFire()
 	}
 }
 
+int ACharacterBase::GetCountKill() const
+{
+	return CountKill;
+}
+
 void ACharacterBase::MoveForward(float Value)
 {
 	if (Value != 0.0f)
@@ -234,6 +267,11 @@ void ACharacterBase::MoveForward(float Value)
 	{
 		Move = false;
 	}
+}
+
+int ACharacterBase::GetNowRound() const
+{
+	return NowRound;
 }
 
 void ACharacterBase::MoveRight(float Value)
