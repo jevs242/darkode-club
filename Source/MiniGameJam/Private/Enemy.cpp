@@ -37,3 +37,8 @@ float AEnemy::GetHealthPercent() const
 	return Health / MaxHealth;
 }
 
+bool AEnemy::GetShield() const
+{
+	return Shield;
+}
+

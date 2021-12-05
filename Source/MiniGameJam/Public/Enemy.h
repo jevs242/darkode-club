@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintPure)
 		float GetHealthPercent() const;
 
+	UFUNCTION(BlueprintPure)
+		bool GetShield() const;
+
 
 
 	UPROPERTY(EditAnyWhere)
@@ -37,5 +40,7 @@ public:
 	UPROPERTY(EditAnyWhere)
 		int MaxHealth = 1000;
 
+	UPROPERTY(EditAnyWhere)
+		bool Shield = false;
 
 };

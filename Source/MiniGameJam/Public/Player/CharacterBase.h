@@ -167,6 +167,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void vDamage(float Damage);
 
+	UFUNCTION(BlueprintCallable)
+		void vNowRound(int Round);
+
 protected:
 
 	/** Fires a projectile. */

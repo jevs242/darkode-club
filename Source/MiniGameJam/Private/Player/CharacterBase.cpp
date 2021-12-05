@@ -163,11 +163,17 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ACharacterBase::vBeginBattle(bool Begin)
 {
 	BeginBattle = Begin;
+	NowRound = 1;
 }
 
 void ACharacterBase::vDamage(float Damage)
 {
 	Health -= Damage;
+}
+
+void ACharacterBase::vNowRound(int SumRound)
+{
+	NowRound += SumRound;
 }
 
 float ACharacterBase::GetHealthPercent() const
@@ -255,6 +261,11 @@ int ACharacterBase::GetCountKill() const
 	return CountKill;
 }
 
+int ACharacterBase::GetNowRound() const
+{
+	return NowRound;
+}
+
 void ACharacterBase::MoveForward(float Value)
 {
 	if (Value != 0.0f)
@@ -267,11 +278,6 @@ void ACharacterBase::MoveForward(float Value)
 	{
 		Move = false;
 	}
-}
-
-int ACharacterBase::GetNowRound() const
-{
-	return NowRound;
 }
 
 void ACharacterBase::MoveRight(float Value)
