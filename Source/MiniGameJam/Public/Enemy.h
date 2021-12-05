@@ -32,7 +32,7 @@ public:
 	UFUNCTION(BlueprintPure)
 		bool GetShield() const;
 
-
+	void DestroyEnemy();
 
 	UPROPERTY(EditAnyWhere)
 		float Health;
@@ -43,4 +43,5 @@ public:
 	UPROPERTY(EditAnyWhere)
 		bool Shield = false;
 
+	FTimerHandle FDeath;
 };

@@ -2,6 +2,8 @@
 
 
 #include "Enemy.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/Character.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -22,7 +24,13 @@ void AEnemy::BeginPlay()
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (GetHealthPercent() == 0.0f)
+	{
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+	GetWorld()->GetTimerManager().SetTimer(FDeath, this, &AEnemy::DestroyEnemy, 10.0f, false);
 }
 
 // Called to bind functionality to input
@@ -40,5 +48,10 @@ float AEnemy::GetHealthPercent() const
 bool AEnemy::GetShield() const
 {
 	return Shield;
+}
+
+void AEnemy::DestroyEnemy()
+{
+	Destroy();
 }
 
