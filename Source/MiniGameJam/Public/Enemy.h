@@ -26,4 +26,16 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintPure)
+		float GetHealthPercent() const;
+
+
+
+	UPROPERTY(EditAnyWhere)
+		float Health;
+
+	UPROPERTY(EditAnyWhere)
+		int MaxHealth = 1000;
+
+
 };

@@ -15,7 +15,7 @@ AEnemy::AEnemy()
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	Health = MaxHealth;
 }
 
 // Called every frame
@@ -30,5 +30,10 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+float AEnemy::GetHealthPercent() const
+{
+	return Health / MaxHealth;
 }
 
