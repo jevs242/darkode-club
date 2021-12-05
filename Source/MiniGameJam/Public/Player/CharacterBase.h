@@ -151,9 +151,11 @@ public:
 
 	bool Fire = false;
 
-	int CountKill = 0;
+	UPROPERTY(EditAnyWhere)
+		int CountKill = 0;
 
-	int NowRound = 0;
+	UPROPERTY(EditAnyWhere)
+		int NowRound = 0;
 
 	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
 		bool BossFight = false;
