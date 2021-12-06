@@ -139,8 +139,8 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	check(PlayerInputComponent);
 
 	// Bind jump events
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ACharacterBase::OnFire);
@@ -249,11 +249,11 @@ void ACharacterBase::OnFire()
 	if (FireAnimation != nullptr)
 	{
 		//// Get the animation object for the arms mesh
-		//UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
-		//if (AnimInstance != nullptr)
-		//{
-		//	AnimInstance->Montage_Play(FireAnimation, 1.f);
-		//}
+		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+		if (AnimInstance != nullptr)
+		{
+			AnimInstance->Montage_Play(FireAnimation, 1.f);
+		}
 	}
 }
 
