@@ -52,6 +52,15 @@ bool AEnemy::GetShield() const
 
 void AEnemy::DestroyEnemy()
 {
-
+	
 }
 
+void AEnemy::vDamage(float Damage)
+{
+	Health -= Damage;
+}
+
+void AEnemy::vShield(bool bShield)
+{
+	Shield = bShield;
+}

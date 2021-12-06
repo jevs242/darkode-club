@@ -126,6 +126,12 @@ public:
 		int GetNowRound() const;
 
 	UFUNCTION(BlueprintPure)
+		int GetFire() const;
+
+	UFUNCTION(BlueprintPure)
+		int GetHot() const;
+
+	UFUNCTION(BlueprintPure)
 		bool BossBox() const;
 
 	UFUNCTION(BlueprintPure)

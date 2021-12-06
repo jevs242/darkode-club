@@ -282,6 +282,16 @@ int ACharacterBase::GetNowRound() const
 	return NowRound;
 }
 
+int ACharacterBase::GetFire() const
+{
+	return Fire;
+}
+
+int ACharacterBase::GetHot() const
+{
+	return ChargeHot;
+}
+
 void ACharacterBase::MoveForward(float Value)
 {
 	if (Value != 0.0f)

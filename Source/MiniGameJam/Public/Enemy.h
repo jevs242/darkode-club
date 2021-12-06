@@ -34,6 +34,12 @@ public:
 
 	void DestroyEnemy();
 
+	UFUNCTION(BlueprintCallable)
+		void vDamage(float Damage);
+
+	UFUNCTION(BlueprintCallable)
+		void vShield(bool bShield);
+
 	UPROPERTY(EditAnyWhere)
 		float Health;
 
