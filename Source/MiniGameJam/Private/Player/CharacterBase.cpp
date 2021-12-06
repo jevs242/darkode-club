@@ -109,9 +109,14 @@ void ACharacterBase::Tick(float DeltaTime)
 
 	if (Fire)
 	{
+		FVector Loc;
+		FRotator Rot;
+		GetController()->GetPlayerViewPoint(Loc,Rot);
+
+
 		FHitResult* Hitresult = new FHitResult();
-		FVector start = FP_MuzzleLocation->GetComponentLocation();
-		FVector End = start + (FP_MuzzleLocation->GetForwardVector() * 1500.f);
+		FVector start = Loc;
+		FVector End = Loc + (Rot.Vector() * 1500.f);
 		FCollisionQueryParams TraceParams;
 		FVector Start = FP_Gun->GetComponentLocation();
 		//DrawDebugLine(GetWorld(), start, End, FColor::Red, true, 2.f, false, 4.f);
