@@ -26,16 +26,16 @@ public:
 	ACharacterBase();
 
 protected:
-		/** Pawn mesh: 1st person view (arms; seen only by self) */
+	/** Pawn mesh: 1st person view (arms; seen only by self) */
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		USkeletalMeshComponent* Mesh1P;
 
 	/** Gun mesh: 1st person view (seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh , BlueprintReadOnly)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh, BlueprintReadOnly)
 		USkeletalMeshComponent* FP_Gun;
 
 	/** Location on gun mesh where projectiles should spawn. */
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh , BlueprintReadOnly)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh, BlueprintReadOnly)
 		USceneComponent* FP_MuzzleLocation;
 
 	/** First person camera */
@@ -76,17 +76,17 @@ public:
 		uint8 bUsingMotionControllers : 1;
 
 
-private: 
+private:
 
 	void Run();
 
 	void Walk();
 
 	UPROPERTY(EditAnyWhere)
-	int MaxRun = 1000;
+		int MaxRun = 1000;
 
 	UPROPERTY(EditAnyWhere)
-	int MaxWalk = 600;
+		int MaxWalk = 600;
 
 	bool isRun = false;
 
@@ -157,10 +157,10 @@ public:
 	UPROPERTY(EditAnyWhere)
 		int NowRound = 0;
 
-	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite)
 		bool BossFight = false;
 
-	UPROPERTY(EditAnyWhere , BlueprintReadWrite)
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite)
 		bool BeginBattle = false;
 
 	UFUNCTION(BlueprintCallable)
@@ -171,6 +171,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void vNowRound(int Round);
+
+	UFUNCTION(BlueprintCallable)
+		void vKill(int Kill);
+
+	UFUNCTION(BlueprintCallable)
+		void vBattleBoss(bool bBattleBoss);
 
 protected:
 
@@ -201,7 +207,7 @@ protected:
 
 
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

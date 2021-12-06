@@ -19,7 +19,7 @@
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 
@@ -57,7 +57,7 @@ ACharacterBase::ACharacterBase()
 	// Default offset from the character location for projectiles to spawn
 	GunOffset = FVector(100.0f, 0.0f, 10.0f);
 
-	
+
 }
 
 // Called when the game starts or when spawned
@@ -96,7 +96,7 @@ void ACharacterBase::Tick(float DeltaTime)
 	{
 		Charge -= DownCharge * DeltaTime;
 	}
-	else if(!Fire && Charge <= MaxCharge)
+	else if (!Fire && Charge <= MaxCharge)
 	{
 		Charge += UpCharge * DeltaTime;
 	}
@@ -128,7 +128,7 @@ void ACharacterBase::Tick(float DeltaTime)
 		}
 	}
 
-	
+
 }
 
 // Called to bind functionality to input
@@ -157,8 +157,8 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	//Run 
 
-	PlayerInputComponent->BindAction("Run" , IE_Pressed ,this ,&ACharacterBase::Run);
-	PlayerInputComponent->BindAction("Run", IE_Released , this, &ACharacterBase::Walk);
+	PlayerInputComponent->BindAction("Run", IE_Pressed, this, &ACharacterBase::Run);
+	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACharacterBase::Walk);
 }
 
 void ACharacterBase::vBeginBattle(bool Begin)
@@ -177,6 +177,16 @@ void ACharacterBase::vNowRound(int SumRound)
 	NowRound += SumRound;
 }
 
+void ACharacterBase::vKill(int Kill)
+{
+	CountKill = Kill;
+}
+
+void ACharacterBase::vBattleBoss(bool bBattleBoss)
+{
+	BossFight = bBattleBoss;
+}
+
 float ACharacterBase::GetHealthPercent() const
 {
 	return Health / MaxHealth;
@@ -190,6 +200,11 @@ float ACharacterBase::GetResistencePercent() const
 float ACharacterBase::GetChangePercent() const
 {
 	return Charge / MaxCharge;
+}
+
+int ACharacterBase::GetCountKill() const
+{
+	return CountKill;
 }
 
 bool ACharacterBase::BossBox() const
@@ -208,12 +223,12 @@ void ACharacterBase::OnFire()
 	{
 		Fire = true;
 
-		
-		
-		
+
+
+
 		if (Charge > 100 && ChargeHot)
 		{
-			ChargeHot = false; 
+			ChargeHot = false;
 		}
 	}
 
@@ -255,11 +270,6 @@ void ACharacterBase::OnFire()
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
-}
-
-int ACharacterBase::GetCountKill() const
-{
-	return CountKill;
 }
 
 int ACharacterBase::GetNowRound() const
