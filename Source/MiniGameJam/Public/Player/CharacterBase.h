@@ -106,6 +106,9 @@ private:
 	UPROPERTY(EditAnyWhere)
 		float DownResistence = 25;
 
+	UPROPERTY(EditAnyWhere)
+		int fDamage = 50;
+
 	bool ChargeHot = false;
 
 public:

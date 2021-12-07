@@ -132,7 +132,7 @@ void ACharacterBase::Tick(float DeltaTime)
 			{
 				if (!Hit->Shield)
 				{
-					Hit->Health -= 1;
+					Hit->Health -= fDamage * DeltaTime;
 				}
 			}
 
