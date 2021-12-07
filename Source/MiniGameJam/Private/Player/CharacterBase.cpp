@@ -99,6 +99,10 @@ void ACharacterBase::Tick(float DeltaTime)
 	else if (!Fire && Charge <= MaxCharge)
 	{
 		Charge += UpCharge * DeltaTime;
+		if (Charge >= MaxCharge)
+		{
+			ChargeHot = false;
+		}
 	}
 
 	if (Charge <= 0)
@@ -282,12 +286,12 @@ int ACharacterBase::GetNowRound() const
 	return NowRound;
 }
 
-int ACharacterBase::GetFire() const
+bool ACharacterBase::GetFire() const
 {
 	return Fire;
 }
 
-int ACharacterBase::GetHot() const
+bool ACharacterBase::GetHot() const
 {
 	return ChargeHot;
 }

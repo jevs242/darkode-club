@@ -126,10 +126,10 @@ public:
 		int GetNowRound() const;
 
 	UFUNCTION(BlueprintPure)
-		int GetFire() const;
+		bool GetFire() const;
 
 	UFUNCTION(BlueprintPure)
-		int GetHot() const;
+		bool GetHot() const;
 
 	UFUNCTION(BlueprintPure)
 		bool BossBox() const;
