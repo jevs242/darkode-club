@@ -176,6 +176,9 @@ public:
 		void vDamage(float Damage);
 
 	UFUNCTION(BlueprintCallable)
+		void vHealth(float fHealth);
+
+	UFUNCTION(BlueprintCallable)
 		void vNowRound(int Round);
 
 	UFUNCTION(BlueprintCallable)

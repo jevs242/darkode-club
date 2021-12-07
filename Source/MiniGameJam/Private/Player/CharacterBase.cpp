@@ -130,8 +130,10 @@ void ACharacterBase::Tick(float DeltaTime)
 			AEnemy* Hit = Cast<AEnemy>(Hitresult->GetActor());
 			if (Hit)
 			{
-				//print("Down");
-				Hit->Health -= 1;
+				if (!Hit->Shield)
+				{
+					Hit->Health -= 1;
+				}
 			}
 
 		}
@@ -179,6 +181,11 @@ void ACharacterBase::vBeginBattle(bool Begin)
 void ACharacterBase::vDamage(float Damage)
 {
 	Health -= Damage;
+}
+
+void ACharacterBase::vHealth(float fHealth)
+{
+	Health = fHealth;
 }
 
 void ACharacterBase::vNowRound(int SumRound)
