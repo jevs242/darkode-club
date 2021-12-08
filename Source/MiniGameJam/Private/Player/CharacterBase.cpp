@@ -135,7 +135,6 @@ void ACharacterBase::Tick(float DeltaTime)
 					Hit->Health -= fDamage * DeltaTime;
 				}
 			}
-
 		}
 	}
 
@@ -190,7 +189,10 @@ void ACharacterBase::vHealth(float fHealth)
 
 void ACharacterBase::vNowRound(int SumRound)
 {
-	NowRound += SumRound;
+	if (NowRound != 7)
+	{
+		NowRound += SumRound;
+	}
 }
 
 void ACharacterBase::vKill(int Kill)
