@@ -1,14 +1,143 @@
-Binaries
-DerivedDataCache
-Intermediate
-Saved
-.vscode
-.vs
+# Ignore user-specific and temporary files
+Saved/
+Intermediate/
+DerivedDataCache/
+
+# Ignore compiled binaries and intermediate build files
+Binaries/
+Build/
+Build/WindowsNoEditor/
 *.VC.db
-*.opensdf
-*.opendb
+*.suo
+*.user
+*.ncb
 *.sdf
+*.opensdf
+*.sln.docstates
+
+# Ignore log files
+*.log
+*.log.*
+
+# Ignore crash reports and debug files
+*.pdb
+*.dmp
+
+# Ignore auto-generated asset thumbnails
+Thumbnails/
+
+# Ignore build artifacts and temporary files
+*.idb
+*.class
+*.meta
+*.obj
+*.pch
+*.pyo
+*.pyc
+*.py.class
+
+# Ignore Unreal Engine-specific cache files
+DerivedDataCache/
+Saved/Logs/
+Saved/Collections/
+Saved/Backup/
+Saved/Autosaves/
+Saved/StagedBuilds/
+
+# Ignore plugin intermediate files
+Plugins/*/Intermediate/
+Plugins/*/Binaries/
+
+# Ignore iOS and Android build files
+Build/iOS/
+Build/Android/
+
+# Ignore C++ compiled binaries
+*.exe
+*.dll
+*.lib
+*.app
+*.ipa
+*.so
+*.dylib
+*.exp
+*.a
+*.ilk
+*.map
+*.pak
+*.zip
+*.gz
+
+# Ignore MacOS specific files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Ignore Linux specific files
+*.workspace
+*.vscode
+.vscode/
+.idea/
+.clangd/
+.clang-format
+compile_commands.json
+
+# Ignore temporary files from editors
+*.swp
+*.swo
+*.bak
+*~
+
+# Ignore Python virtual environments
+venv/
+.env/
+__pycache__/
+
+# Ignore Unreal Engine version control files
+*.uprojectdirs
+*.ucl
+
+# Ignore Rider-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.idea_modules/
+
+# Ignore Visual Studio-specific files
+.vscode/
+*.vs/
+*.vcxproj*
 *.sln
 *.suo
-*.xcodeproj
-*.xcworkspace
+*.ncb
+*.user
+*.cache
+*.pdb
+*.tlog
+*.idb
+*.opensdf
+*.VC.opendb
+*.VC.db
+
+# Ignore CMake generated files
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore KDevelop-specific files
+.kdev4/
+*.kdev4
+
+# Ignore Unreal Engine workspace and project files
+*.pri
+DarkodeClub.code-workspace
+DarkodeClub.pro
+*.workspace
+DarkodeClubCodeCompletionFolders.txt
+DarkodeClubCodeLitePreProcessor.txt
+CMakeLists.txt
