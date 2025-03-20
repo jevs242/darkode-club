@@ -2,7 +2,7 @@
 
 
 #include "Player/CharacterBase.h"
-#include "MiniGameJam/MiniGameJamProjectile.h"
+#include "DarkodeClub/MiniGameJamProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -237,7 +237,7 @@ bool ACharacterBase::RoundBox() const
 
 void ACharacterBase::OnFire()
 {
-	if (Charge > 0 && !ChargeHot || Charge > 100 && ChargeHot)
+	if ((Charge > 0 && !ChargeHot) || (Charge > 100 && ChargeHot))
 	{
 		Fire = true;
 

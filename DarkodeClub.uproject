@@ -1,11 +1,11 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.26",
+	"EngineAssociation": "{000402D7-08DD-6689-534D-FED0CB417DC4}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "MiniGameJam",
+			"Name": "DarkodeClub",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [

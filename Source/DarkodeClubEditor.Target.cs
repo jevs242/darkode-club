@@ -3,12 +3,12 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class MiniGameJamEditorTarget : TargetRules
+public class DarkodeClubEditorTarget : TargetRules
 {
-	public MiniGameJamEditorTarget(TargetInfo Target) : base(Target)
+	public DarkodeClubEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.Add("MiniGameJam");
+		ExtraModuleNames.Add("DarkodeClub");
 	}
 }

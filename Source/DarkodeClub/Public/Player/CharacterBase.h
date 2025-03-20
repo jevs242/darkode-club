@@ -16,7 +16,7 @@ class UAnimMontage;
 class USoundBase;
 
 UCLASS()
-class MINIGAMEJAM_API ACharacterBase : public ACharacter
+class DARKODECLUB_API ACharacterBase : public ACharacter
 {
 	GENERATED_BODY()
 

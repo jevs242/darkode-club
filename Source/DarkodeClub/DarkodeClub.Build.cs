@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class MiniGameJam : ModuleRules
+public class DarkodeClub : ModuleRules
 {
-	public MiniGameJam(ReadOnlyTargetRules Target) : base(Target)
+	public DarkodeClub(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

@@ -7,7 +7,7 @@
 #include "Enemy.generated.h"
 
 UCLASS()
-class MINIGAMEJAM_API AEnemy : public ACharacter
+class DARKODECLUB_API AEnemy : public ACharacter
 {
 	GENERATED_BODY()
 
