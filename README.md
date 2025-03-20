@@ -18,8 +18,7 @@ To open the project in **Unreal Engine 4**, follow these steps:
 
 ## 🎮 Where to Play?
 
-You can play **Darkode Club** on **Itch.io**:  
-🔗 [Play Now](https://two42studios.itch.io/darkode-club)
+You can play **Darkode Club** on **Itch.io**:  🔗 [Play Now](https://two42studios.itch.io/darkode-club)
 
 
 Enjoy exploring the project! 🎮🔥
