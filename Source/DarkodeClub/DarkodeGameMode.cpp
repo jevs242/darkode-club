@@ -1,11 +1,11 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "MiniGameJamGameMode.h"
-#include "MiniGameJamHUD.h"
+#include "DarkodeGameMode.h"
+#include "DarkodeHUD.h"
 #include "Player/CharacterBase.h"
 #include "UObject/ConstructorHelpers.h"
 
-AMiniGameJamGameMode::AMiniGameJamGameMode()
+ADarkodeGameMode::ADarkodeGameMode()
 	: Super()
 {
 	// set default pawn class to our Blueprinted character
@@ -13,5 +13,5 @@ AMiniGameJamGameMode::AMiniGameJamGameMode()
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
 	// use our custom HUD class
-	HUDClass = AMiniGameJamHUD::StaticClass();
+	HUDClass = ADarkodeHUD::StaticClass();
 }

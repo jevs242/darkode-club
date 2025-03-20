@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "MiniGameJamHUD.generated.h"
+#include "DarkodeHUD.generated.h"
 
 UCLASS()
-class AMiniGameJamHUD : public AHUD
+class ADarkodeHUD : public AHUD
 {
 	GENERATED_BODY()
 
 public:
-	AMiniGameJamHUD();
+	ADarkodeHUD();
 
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;

@@ -2,7 +2,7 @@
 
 
 #include "Player/CharacterBase.h"
-#include "DarkodeClub/MiniGameJamProjectile.h"
+#include "DarkodeClub/Projectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"

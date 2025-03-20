@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "MiniGameJamGameMode.generated.h"
+#include "DarkodeGameMode.generated.h"
 
 UCLASS(minimalapi)
-class AMiniGameJamGameMode : public AGameModeBase
+class ADarkodeGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
-	AMiniGameJamGameMode();
+	ADarkodeGameMode();
 };
 
 

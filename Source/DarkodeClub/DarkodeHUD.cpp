@@ -1,13 +1,13 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "MiniGameJamHUD.h"
+#include "DarkodeHUD.h"
 #include "Engine/Canvas.h"
 #include "Engine/Texture2D.h"
 #include "TextureResource.h"
 #include "CanvasItem.h"
 #include "UObject/ConstructorHelpers.h"
 
-AMiniGameJamHUD::AMiniGameJamHUD()
+ADarkodeHUD::ADarkodeHUD()
 {
 	// Set the crosshair texture
 	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/FirstPerson/Textures/FirstPersonCrosshair"));
@@ -15,7 +15,7 @@ AMiniGameJamHUD::AMiniGameJamHUD()
 }
 
 
-void AMiniGameJamHUD::DrawHUD()
+void ADarkodeHUD::DrawHUD()
 {
 	Super::DrawHUD();
 

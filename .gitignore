@@ -15,15 +15,6 @@ Build/WindowsNoEditor/
 *.opensdf
 *.sln.docstates
 
-# Ignore generated config files
-Config/DefaultEditorPerProjectUserSettings.ini
-Config/DefaultEditorSettings.ini
-Config/DefaultEngine.ini
-Config/DefaultGame.ini
-Config/DefaultInput.ini
-Config/DefaultGameUserSettings.ini
-Config/DefaultEditorUserSettings.ini
-
 # Ignore log files
 *.log
 *.log.*
@@ -150,14 +141,8 @@ Makefile
 # Ignore Unreal Engine workspace and project files
 *.pri
 DarkodeClub.code-workspace
-DarkodeClub.kdev4
 DarkodeClub.pro
-DarkodeClub.workspace
+*.workspace
 DarkodeClubCodeCompletionFolders.txt
-DarkodeClubConfig.pri
-DarkodeClubDefines.pri
-DarkodeClubHeader.pri
-DarkodeClubIncludes.pri
-DarkodeClubSource.pri
 DarkodeClubCodeLitePreProcessor.txt
 CMakeLists.txt

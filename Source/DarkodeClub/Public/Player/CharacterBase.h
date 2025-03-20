@@ -61,7 +61,7 @@ public:
 
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
-		TSubclassOf<class AMiniGameJamProjectile> ProjectileClass;
+		TSubclassOf<class AProjectile> ProjectileClass;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
