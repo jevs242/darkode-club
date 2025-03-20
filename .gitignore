@@ -160,3 +160,4 @@ DarkodeClubHeader.pri
 DarkodeClubIncludes.pri
 DarkodeClubSource.pri
 DarkodeClubCodeLitePreProcessor.txt
+CMakeLists.txt
