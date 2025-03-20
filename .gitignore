@@ -6,6 +6,7 @@ DerivedDataCache/
 # Ignore compiled binaries and intermediate build files
 Binaries/
 Build/
+Build/WindowsNoEditor/
 *.VC.db
 *.suo
 *.user
@@ -146,17 +147,16 @@ Makefile
 .kdev4/
 *.kdev4
 
-# Ignore VS Code workspace files
+# Ignore Unreal Engine workspace and project files
+*.pri
 DarkodeClub.code-workspace
-
-# Ignore auto-generated CodeLite project files
-DarkodeClubCodeLitePreProcessor.txt
+DarkodeClub.kdev4
+DarkodeClub.pro
+DarkodeClub.workspace
 DarkodeClubCodeCompletionFolders.txt
-
-# Ignore extra Qt project files (if auto-generated)
 DarkodeClubConfig.pri
 DarkodeClubDefines.pri
 DarkodeClubHeader.pri
 DarkodeClubIncludes.pri
 DarkodeClubSource.pri
-
+DarkodeClubCodeLitePreProcessor.txt
