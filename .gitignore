@@ -24,9 +24,6 @@ Build/WindowsNoEditor/
 *.dmp
 
 # Ignore auto-generated asset thumbnails
-*.png
-*.jpg
-*.bmp
 Thumbnails/
 
 # Ignore build artifacts and temporary files
@@ -100,8 +97,6 @@ __pycache__/
 # Ignore Unreal Engine version control files
 *.uprojectdirs
 *.ucl
-*.uproject
-*.umap
 
 # Ignore Rider-specific files
 .idea/
